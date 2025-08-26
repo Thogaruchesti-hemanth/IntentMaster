@@ -66,17 +66,29 @@ It is **beginner-friendly** but comprehensive enough for **intermediate develope
 ### 📍 Page 1: Implicit Intents Playground
 - A **grid of ~20 apps/tasks**, each demonstrating a different implicit intent.  
 - Examples:  
-  - Open Browser (`ACTION_VIEW`)  
-  - Open Dialer (`ACTION_DIAL`)  
-  - Make Call (`ACTION_CALL`)  
-  - Open Camera (`ACTION_IMAGE_CAPTURE`)  
-  - Send Email (`ACTION_SENDTO`)  
-  - Open Maps (`geo:` URI)  
-  - Share text (`ACTION_SEND`)  
-  - Pick image/file (`ACTION_GET_CONTENT`)  
-  - Open Settings (`ACTION_SETTINGS`)  
-  - Set Alarm / Timer  
-  - …and more!  
+| #  | Action                              | Intent Code Example                                                                                          |
+| -- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| 1  | Open Browser with URL               | `new Intent(Intent.ACTION_VIEW, Uri.parse("https://google.com"))`                                            |
+| 2  | Open Dialer with number             | `new Intent(Intent.ACTION_DIAL, Uri.parse("tel:123456789"))`                                                 |
+| 3  | Make a Call (⚠ requires permission) | `new Intent(Intent.ACTION_CALL, Uri.parse("tel:123456789"))`                                                 |
+| 4  | Send SMS                            | `new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:123456789")).putExtra("sms_body", "Hello!")`              |
+| 5  | Send Email                          | `new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:someone@example.com"))`                                  |
+| 6  | Share Text (Chooser)                | `new Intent(Intent.ACTION_SEND).setType("text/plain").putExtra(Intent.EXTRA_TEXT, "Hello!")`                 |
+| 7  | Share Image/File                    | `new Intent(Intent.ACTION_SEND).setType("image/*").putExtra(Intent.EXTRA_STREAM, uri)`                       |
+| 8  | Open Camera (Capture Image)         | `new Intent(MediaStore.ACTION_IMAGE_CAPTURE)`                                                                |
+| 9  | Capture Video                       | `new Intent(MediaStore.ACTION_VIDEO_CAPTURE)`                                                                |
+| 10 | Pick Image from Gallery             | `new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)`                               |
+| 11 | Pick File (Document Picker)         | `new Intent(Intent.ACTION_GET_CONTENT).setType("*/*")`                                                       |
+| 12 | Open Maps at Location               | `new Intent(Intent.ACTION_VIEW, Uri.parse("geo:37.7749,-122.4194"))`                                         |
+| 13 | Navigate to Address in Maps         | `new Intent(Intent.ACTION_VIEW, Uri.parse("google.navigation:q=Eiffel+Tower"))`                              |
+| 14 | Play Media File                     | `new Intent(Intent.ACTION_VIEW).setDataAndType(uri, "video/*")`                                              |
+| 15 | Search Web                          | `new Intent(Intent.ACTION_WEB_SEARCH).putExtra(SearchManager.QUERY, "Android Intents")`                      |
+| 16 | Open Contacts App                   | `new Intent(Intent.ACTION_VIEW, ContactsContract.Contacts.CONTENT_URI)`                                      |
+| 17 | Add New Contact                     | `new Intent(ContactsContract.Intents.Insert.ACTION).setType(ContactsContract.RawContacts.CONTENT_TYPE)`      |
+| 18 | Set Alarm                           | `new Intent(AlarmClock.ACTION_SET_ALARM).putExtra(AlarmClock.EXTRA_MESSAGE, "Wake up!")`                     |
+| 19 | Set Timer                           | `new Intent(AlarmClock.ACTION_SET_TIMER).putExtra(AlarmClock.EXTRA_LENGTH, 60)`                              |
+| 20 | Open App Settings                   | `new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.fromParts("package", getPackageName(), null))` |
+ 
 
 ---
 
